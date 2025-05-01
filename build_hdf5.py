@@ -9,7 +9,7 @@ import open3d as o3d
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser('hdf5 reader')
-    parser.add_argument('--dir', type=str, default='/home/zhisheng/lyq/evocube/output/raw_obj/plane_67_trimesh', help='hdf5 file to read')
+    parser.add_argument('--dir', type=str, default='/space/output/toy_plane', help='hdf5 file to read')
     args = parser.parse_args()
 
     # f = h5py.File('/home/zhisheng/lyq/evocube/output/plane_67_trimesh.hdf5', 'r')
