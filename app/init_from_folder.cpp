@@ -26,10 +26,10 @@ int main(){
     std::string output_path = "../data/DATASET2/OM_smooth/";
 
     // COMPUTING OPTIONS
-    bool tet_mesh_already_computed = true; // computes tets from surface/CAD 
+    bool tet_mesh_already_computed = false; // computes tets from surface/CAD 
                                            // + preprocess tet mesh (split some tets and edges, very slow) 
-    bool labeling_already_computed = true; // Calls evolabel
-    bool hexes_already_computed = true; // Simple hexex-based method, no padding, no smoothing
+    bool labeling_already_computed = false; // Calls evolabel
+    bool hexes_already_computed = false; // Simple hexex-based method, no padding, no smoothing
 
     // DEBUG OPTIONS
     bool break_after_first = false;
@@ -77,10 +77,10 @@ int main(){
     //*/
 
     //*
-    input_path = "../data/Inputs/mambo/Simple";
-    input_type = CAD_STEP;
-    expected_extension = "step";
-    output_path = "../data/DATASET2/simple_mambo/";
+    // input_path = "../data/Inputs/mambo/Simple";
+    // input_type = CAD_STEP;
+    // expected_extension = "step";
+    // output_path = "../data/DATASET2/simple_mambo/";
     //*/
 
     /*
@@ -90,12 +90,17 @@ int main(){
     output_path = "../data/DATASET2/medium_mambo/";
     //*/
     
-    /*
-    input_path = "../data/custom/";
+    // /*
+    input_path = "/space/data/examples";
     input_type = TRI_OBJ;
     expected_extension = "obj";
-    output_path = "../data/custom_out/";
-    //*/
+    output_path = "/space/output/examples";
+    if (!std::filesystem::exists(output_path)) {
+        if (std::filesystem::create_directories(output_path)) {
+            std::cout << "Folder Created: " << output_path << std::endl;
+        }
+    }
+    // */
     
     // -------------------- INIT_FROM_FOLDER --------------------
 
@@ -153,6 +158,7 @@ int main(){
 
         // ---- COMPUTE TET MESH + SPLIT DOUBLE BOUNDARY TETS ---- //
         if (!tet_mesh_already_computed){
+            std::cout<< "Compute tet mesh and split double boundary tets." << std::endl;
             if (std::filesystem::is_directory(new_folder)){
                 std::filesystem::remove_all(new_folder);
             }
