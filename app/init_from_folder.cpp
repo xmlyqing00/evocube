@@ -94,7 +94,7 @@ int main(){
     input_path = "/space/data/examples";
     input_type = TRI_OBJ;
     expected_extension = "obj";
-    output_path = "/space/output/examples";
+    output_path = "/space/output/examples/";  // the last "/" is important
     if (!std::filesystem::exists(output_path)) {
         if (std::filesystem::create_directories(output_path)) {
             std::cout << "Folder Created: " << output_path << std::endl;
